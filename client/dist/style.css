@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container_H {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header_H {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
+  
+  .img_H {
+    max-width: 150px;
+  }
+  
+  .main_H {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .background_H {
+    background-image: url('https://res.cloudinary.com/dbrqyjbzd/image/upload/v1692908360/home_background_rxquqi.jpg');
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+
+  }
+  
+  .start-button_H {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+
+  }
+  
+  .start-button_H:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  .content_H {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  p {
+    font-size: 16px;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+/* ######################################################  Log IN      ########################################################*/
+.center-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+.login-container{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    width: 300px;
+    text-align: center;
+  }
+  .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .paragraph {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .back-button {
+    background-color: #d9e5f5;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 30px;
+  }
+  .back-button:hover {
+    background-color: black;
+    color: white;
+  }
+  .login-button{
+    background-color: #d9e5f5;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .login-button:hover {
+    background-color: black;
+    color: white;
+  }
+  .signup-text {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .signup-text a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  /* ######################################################  register     ########################################################*/
+  .signup-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    width: 400px;
+    text-align: center;}
+  /* ######################################################  navbar     ########################################################*/
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d9e5f5;
+    padding: 25px 35px;
+
+  }
+  .left-column {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    margin-right: auto;
+  }
+  .right-column {
+    display: flex;
+    align-items: center;
+  }
+
+  .profile-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 30px;
+  }

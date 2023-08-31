@@ -7,6 +7,10 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: DIST_DIR,
+    publicPath: "/", // Set the public path to root
+  },
+  devServer: {
+    historyApiFallback: true, // This enables HTML5 History API fallback
   },
   module: {
     rules: [
