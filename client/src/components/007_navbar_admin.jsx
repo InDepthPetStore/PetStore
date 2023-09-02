@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { FaShoppingCart, FaUser, FaStore } from 'react-icons/fa';
+import { FaDollarSign, FaPlusSquare, FaStore } from 'react-icons/fa';
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -23,15 +23,15 @@ const Navbar = () => {
             <FaStore />
             </NavLink>
             
-            <NavLink to="profile" style={navbarstyles}>
-            <FaUser />
+            <NavLink to="add_product" style={navbarstyles}>
+            <FaPlusSquare />
+            </NavLink >
+            
+            <NavLink to="orders" style={navbarstyles}>
+            <FaDollarSign />
             </NavLink>
             
-            <NavLink to="cart" style={navbarstyles}>
-            <FaShoppingCart />
-            </NavLink>
-            
-            <button className='start-button_H' onClick={()=>{navigate("/")}}>
+            <button className='start-button_H' onClick={()=>{navigate("/admin_login")}}>
             Logout
             </button>
     </nav>

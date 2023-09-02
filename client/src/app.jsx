@@ -16,6 +16,7 @@ import AdminOrders from "./components/11_admin_orders.jsx";
 import AdminOrderDetails from "./components/12_admin_order_details.jsx";
 import ClientView from "./components/006_client_profile_view.jsx";
 import ClientEdit from "./components/006_client_profile-edit.jsx";
+import AdminUi from "./components/0007_admin_ui.jsx";
 
 function App(){
     return ( 
@@ -36,11 +37,14 @@ function App(){
             </Route>
         </Route>
         <Route path="/admin_login" element={<AdminLogin/> } />
-        <Route path="/admin_store" element={<AdminStore/> } />
-        <Route path="/admin_add_product" element={<AdminAddProduct/> } />
-        <Route path="/admin_product_details" element={<AdminProductDetails/> } />
-        <Route path="/admin_orders" element={<AdminOrders/> } />
-        <Route path="/admin_order_details" element={<AdminOrderDetails/> } />
+        <Route path="/admin" element={<AdminUi/> } >
+            <Route index element={<AdminStore/> }/>
+            <Route path="store" element={<AdminStore/> } />
+            <Route path="add_product" element={<AdminAddProduct/> } />
+            <Route path="product_details" element={<AdminProductDetails/> } />
+            <Route path="orders" element={<AdminOrders/> } />
+            <Route path="order_details" element={<AdminOrderDetails/> } />
+        </Route>
     </Routes>
 </BrowserRouter>
 )}
