@@ -1,0 +1,346 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container_H {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header_H {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
+  
+  .img_H {
+    max-width: 150px;
+  }
+  
+  .main_H {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .background_H {
+    background-image: url('https://res.cloudinary.com/dbrqyjbzd/image/upload/v1692908360/home_background_rxquqi.jpg');
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+
+  }
+  
+  .start-button_H {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+
+  }
+  
+  .start-button_H:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  .content_H {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  p {
+    font-size: 16px;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+/* ######################################################  Log IN      ########################################################*/
+.center-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+.login-container{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    width: 300px;
+    text-align: center;
+  }
+  .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .paragraph {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .back-button {
+    background-color: #d9e5f5;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 30px;
+  }
+  .back-button:hover {
+    background-color: black;
+    color: white;
+  }
+  .login-button{
+    background-color: #d9e5f5;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .login-button:hover {
+    background-color: black;
+    color: white;
+  }
+  .signup-text {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .signup-text a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  /* ######################################################  register     ########################################################*/
+  .signup-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    width: 400px;
+    text-align: center;}
+  /* ######################################################  navbar     ########################################################*/
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d9e5f5;
+    padding: 25px 35px;
+
+  }
+  .left-column {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    margin-right: auto;
+  }
+  .right-column {
+    display: flex;
+    align-items: center;
+  }
+
+  .profile-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 30px;
+  }
+  /* ######################################################  radio container for category     ########################################################*/
+
+
+  /* Style the radio container */
+.radio_container {
+
+  margin-bottom: 10px;
+}
+
+/* Style the radio inputs and labels */
+.radio_container input[type="radio"] {
+  margin-right: 5px; /* Add some spacing between radio buttons and labels */
+  appearance: none; /* Hide the default radio button */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333; /* Border for the radio button */
+  border-radius: 50%; /* Make it circular */
+  outline: none; /* Remove the focus outline */
+  cursor: pointer;
+}
+
+/* Style the radio labels */
+.radio_container label {
+  cursor: pointer;
+  margin-right:10px ;
+}
+
+/* Style the radio button when it's checked */
+.radio_container input[type="radio"]:checked {
+  background-color: #333; /* Change background color when checked */
+  border-color: #333; /* Change border color when checked */
+  color: white; /* Change text color when checked */
+}
+
+
+
+
+
+
+
+/* Style the label that acts as a button */
+.custom-file-upload {
+  display: inline-block;
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Style the input (hidden) */
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+/* Style the file name text */
+.file-name {
+  margin-top: 10px;
+}
+
+/* Add a hover effect for the label */
+.custom-file-upload:hover {
+  background-color: #2980b9;
+}
+
+
+
+
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set a nice background color */
+body {
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Style category buttons */
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  margin : 20px;
+}
+
+.category-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category-button:hover {
+  background-color: #0056b3;
+}
+
+.category-button.active {
+  background-color: #0056b3;
+}
+
+/* Style product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 1rem;
+  color: #333;
+}
+
+.add-to-cart-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 10px auto;
+}
+
+.add-to-cart-button:hover {
+  background-color: #218838;
+}
