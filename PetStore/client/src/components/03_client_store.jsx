@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function ClientStore() {
+function ClientStore(props) {
   const [products, setProducts] = useState([]);
   const [currentCategory, setCurrentCategory] = useState('all');
+  const [error, setError] = useState("");
+
+  const ids = props.ids;
 
   useEffect(() => {
     getAllProducts();
+    console.log(ids)
   }, []);
+
 
   const getAllProducts = () => {
     axios.get('/client/products') 
@@ -31,10 +36,17 @@ function ClientStore() {
       });
   };
 
-  const addToCart = (productId) => {
-    // Implement your add to cart logic here
-    console.log(`Added product with ID ${productId} to the cart`);
-  };
+  const addToCart = (product) => {
+  axios.post('client/products/add_to_cart',{p_image: product.image, p_name: product.name, quantity:1, cost:product.price, products_idproduct: product.idproduct, cart_idcart:ids.idcart, cart_clients_idclient:ids.clients_idclient})
+  .then((res)=>{
+    console.log(res)})
+  .catch((error)=>{ if (error.response) {
+    setError(error.response.data.message); // Set the error message from the response
+  } else {
+    setError("An error occurred. Please try again later."); // Handle network errors
+  }
+    });
+  }
 
   return (
       <div className="container mt-4">
@@ -75,7 +87,8 @@ function ClientStore() {
               <div className="product-info">
                 <h5 className="product-name">{product.name}</h5>
                 <p className="product-price">Price: ${product.price}</p>
-                <button className="add-to-cart-button" onClick={() => addToCart(product.idproduct)}>
+                {error && <p style={{color:"red"}} className="error-message">{error}</p>} {/* Display error message if it exists */}
+                <button className="add-to-cart-button" onClick={() => addToCart(product)}>
                   Add to Cart
                 </button>
               </div>

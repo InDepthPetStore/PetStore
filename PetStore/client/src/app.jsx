@@ -6,7 +6,6 @@ import ClientRegister from "./components/02_client_register.jsx";
 import ClientStore from "./components/03_client_store.jsx";
 import ClientUi from "./components/0002_client_ui.jsx";
 import ClientCart from "./components/04_client_cart.jsx";
-import ClientOrder from "./components/05_client_order.jsx";
 import ClientProfile from "./components/06_client_profile.jsx";
 import AdminLogin from "./components/07_admin_login.jsx";
 import AdminStore from "./components/08_admin_store.jsx";
@@ -29,7 +28,6 @@ function App(){
             <Route index element={<ClientStore/> }/>
             <Route path="store" element={<ClientStore/> } />
             <Route path="cart" element={<ClientCart/> } />
-            <Route path="order" element={<ClientOrder/> } />
             <Route path="profile" element={<ClientProfile/> } >
                 <Route index element={<ClientView/> }/>
                 <Route path="view" element={<ClientView/> } />

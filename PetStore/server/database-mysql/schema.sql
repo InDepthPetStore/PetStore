@@ -94,6 +94,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `petstore`.`cp`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `petstore`.`cp` (
+  `p_image` VARCHAR(255) NOT NULL,
   `p_name` VARCHAR(255) NOT NULL,
   `quantity` INT NOT NULL,
   `cost` INT NOT NULL,

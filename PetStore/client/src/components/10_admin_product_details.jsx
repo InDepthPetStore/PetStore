@@ -1,11 +1,9 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 function UpdateCustomer() {
-    // const {idproduct}=useParams()
     const location = useLocation();
-  
 
     const[file,setFile]=useState("")  
     const product = location.state ; 
@@ -18,6 +16,12 @@ function UpdateCustomer() {
     const [error, setError] = useState("");
     const [response, setResponse] = useState("");
  
+    useEffect(() => {
+      if (file) {
+        Upload();
+      }
+    }, [file]);
+
 
     const update=()=>{
       axios.put(`/admin/product/${product.idproduct}`,{image,name,category,price,stock})
@@ -42,10 +46,10 @@ function UpdateCustomer() {
               console.error('Error uploading image:', error);
             }
           }
+
+
           const handleFileChange = (e) => {
             setFile(e.target.files[0]);
-            console.log(file)
-            Upload();
           };
 
   return (
@@ -57,8 +61,8 @@ function UpdateCustomer() {
       <input type="file" onChange={(e)=>{handleFileChange(e)}} />
       <span>Choose File</span>
       </label>
-
-      <input type="text" placeholder="product.name" onChange={(e)=>{setName(e.target.value)}}/>
+      {image && <p style={{color:"green"}} className="error-message">Uploaded</p>}
+      <input type="text" placeholder={product.name} onChange={(e)=>{setName(e.target.value)}}/>
       <div className='radio_container'>
             <input type='radio' value='pets' name='category' onChange={(e)=>{setCategory(e.target.value)}}/>
               <label htmlFor='pets' >Pets</label>
@@ -67,8 +71,8 @@ function UpdateCustomer() {
             <input type='radio' value='accessories' name='category' onChange={(e)=>{setCategory(e.target.value)}}/>
               <label htmlFor='accessories' >Accessories</label>
       </div>
-      <input type="text" placeholder="product.price" onChange={(e)=>{setPrice(e.target.value)}}/>
-      <input type="text" placeholder="product.stock"onChange={(e)=>{setStock(e.target.value)}}/> <br />
+      <input type="text" placeholder={product.price} onChange={(e)=>{setPrice(e.target.value)}}/>
+      <input type="text" placeholder={product.stock}onChange={(e)=>{setStock(e.target.value)}}/> <br />
       {error && <p style={{color:"red"}} className="error-message">{error}</p>}
       {response && <p style={{color:"green"}} className="response-message">{response}</p>}
 

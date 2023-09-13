@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import axios from 'axios'
 
 function AdminAddProduct() {
@@ -12,8 +12,19 @@ function AdminAddProduct() {
             const [error, setError] = useState("");
             const [response, setResponse] = useState("");
 
-            const add=()=>{
-              axios.post('/admin/add_product',{image,name,category,price,stock})
+          
+            useEffect(() => {
+              // This effect will run when 'file' state changes
+              if (file) {
+                // Call Upload() when 'file' state is updated
+                Upload();
+              }
+            }, [file]);
+
+
+            const add= async ()=>{
+
+              await axios.post('/admin/add_product',{image,name,category,price,stock})
               .then((res)=>{ setResponse(res.data.message)})
               .catch((error)=>{ if (error.response) {
                 setError(error.response.data.message); // Set the error message from the response
@@ -25,23 +36,25 @@ function AdminAddProduct() {
 
             
             const Upload = async ()=>{
+              if (file) {
               const form=new FormData()
               form.append('file',file)
               form.append('upload_preset',"medswi")
               try {
-                const response = await axios.post(
-                  `https://api.cloudinary.com/v1_1/dbrqyjbzd/image/upload`, form );
-
+                const response = await axios.post( `https://api.cloudinary.com/v1_1/dbrqyjbzd/image/upload`, form );
                 setImage(response.data.url);
-              } catch (error) {
+              } 
+              catch (error) {
                 console.error('Error uploading image:', error);
               }
             }
+            else {
+              console.error("No file selected for upload");
+            }
+            }
               
             const handleFileChange = (e) => {
-              setFile(e.target.files[0]);
-              console.log(file)
-              Upload();
+              setFile(e.target.files[0])
             };
 
             return (
@@ -53,7 +66,7 @@ function AdminAddProduct() {
                   <input type="file" onChange={(e)=>{handleFileChange(e)}} />
                   <span>Choose File</span>
                   </label>
-
+                  {image && <p style={{color:"green"}} className="error-message">Uploaded</p>}
 
                       {/* <input type="file" onChange={(e)=>{setFile(e.target.files[0])}} />
                   <button className='' onClick={()=>{Upload()}}>upload !</button><br/> */}

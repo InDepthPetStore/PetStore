@@ -10,8 +10,11 @@ function ClientLogin() {
 const login=()=>{
   axios.post('/auth/login_client',{email,password})
   .then((res)=>{
+    axios.get('/client/ids')
+        .then((response)=>{setIds(response)})
+        .catch((error)=>{console.error(error)})
     console.log(res)
-    navigate('/client')})
+    navigate('/client', {state:ids})})
   .catch((error)=>{ if (error.response) {
     setError(error.response.data.message); // Set the error message from the response
   } else {

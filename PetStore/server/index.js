@@ -1,6 +1,5 @@
 require("dotenv").config()
 const express = require("express");
-const itemRoutes = require('./routes/item.routes')
 const path = require('path');
 const pool = require('./database-mysql');
 const cors = require("cors");
@@ -17,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/../client/dist"));
 
-app.use("/", itemRoutes);
+
 app.use("/auth", require('./routes/authRoutes'));
 app.use("/admin", require("./routes/adminRoutes"));
 app.use("/client", require("./routes/clientRoutes"));
@@ -26,7 +25,6 @@ app.use("/client", require("./routes/clientRoutes"));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/dist', 'index.html'));
 });
-
 
 
 // pool.connect((err) => {

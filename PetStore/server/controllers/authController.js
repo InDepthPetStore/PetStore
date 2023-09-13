@@ -10,7 +10,7 @@ const register = async (req, res) => {
   
     try {
       const [existingUser] = await pool.query('SELECT * FROM clients WHERE email = ?', [email]);
-  
+
       if (existingUser.length > 0) {
         return res.status(401).json({ message: "User already exists" });
       }
@@ -19,7 +19,8 @@ const register = async (req, res) => {
   
       const [result] = await pool.query('INSERT INTO clients (fullname, email, password, phone, shipping) VALUES (?, ?, ?, ?, ?)', [fullname, email, hashedPassword, phone, shipping]);
       const userId = result.insertId;
-  
+      const [result2] =await pool.query('INSERT INTO cart (clients_idclient) VALUES (?)' ,[userId])
+
       const accessToken = jwt.sign(
         {
           UserInfo: {
@@ -27,7 +28,7 @@ const register = async (req, res) => {
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: '1m' }
+        { expiresIn: '15m' }
       );
   
       const refreshToken = jwt.sign(
@@ -51,6 +52,7 @@ const register = async (req, res) => {
         accessToken,
         email,
         fullname,
+        userId
       });
     } catch (error) {
       console.error("Error during registration:", error);
