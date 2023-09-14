@@ -1,33 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useAuth } from './auth.jsx'
 function ClientRegister() {
   const navigate =  useNavigate ()
-  const [ids,setIds]=useState([])
   const [fullname,setName]=useState("")
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
   const [phone,setPhone]=useState("")
   const [shipping,setShipping]=useState("")
   const [error, setError] = useState("");
+  const auth = useAuth()
 
 
-useEffect(()=>{
-if(ids.length>0){
-  navigate('/client', {state:ids})
-}
-},[ids])
-  
+
   const register=()=>{
     axios.post('/auth/register_client',{fullname,email,password,phone,shipping})
     .then((res)=>{
-      axios.get(`/client/ids/${res.data.userId}`)
-        .then((response)=>{
-          setIds(response.data)
-        })
-        .catch((error)=>{console.error(error)})
-      console.log(res)
-    })
+            axios.get(`/client/ids/${res.data.userId}`)
+              .then((response)=>{
+                auth.login(response.data)
+                navigate("/client", {replace:true})
+              })
+              .catch((error)=>{console.error(error)})
+            })
     .catch((error)=>{ if (error.response) {
       setError(error.response.data.message); // Set the error message from the response
     } else {

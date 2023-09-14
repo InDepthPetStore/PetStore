@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { useAuth } from './auth.jsx';
 
 function ClientLogin() {
+  const auth = useAuth()
   const navigate =  useNavigate()
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
@@ -10,11 +12,12 @@ function ClientLogin() {
 const login=()=>{
   axios.post('/auth/login_client',{email,password})
   .then((res)=>{
-    axios.get('/client/ids')
-        .then((response)=>{setIds(response)})
-        .catch((error)=>{console.error(error)})
-    console.log(res)
-    navigate('/client', {state:ids})})
+            axios.get(`/client/ids/${res.data.userId}`)
+            .then((response)=>{
+              auth.login(response.data)
+              navigate('/client', {replace:true})})
+            })
+            .catch((error)=>{console.error(error)})
   .catch((error)=>{ if (error.response) {
     setError(error.response.data.message); // Set the error message from the response
   } else {

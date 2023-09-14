@@ -164,6 +164,7 @@ const register = async (req, res) => {
       res.json({
         accessToken,
         email,
+        userId
       });
     } catch (error) {
       console.error("Error during login:", error);

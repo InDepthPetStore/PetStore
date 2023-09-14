@@ -10,7 +10,6 @@ function ClientStore(props) {
 
   useEffect(() => {
     getAllProducts();
-    console.log(ids)
   }, []);
 
 

@@ -1,10 +1,11 @@
 import React from 'react'
 import Navbar from './002_navbar_client.jsx'
-import { Outlet,useLocation } from 'react-router-dom'
+import { Outlet} from 'react-router-dom'
+// import { useAuth } from './auth.jsx';
 
 function ClientUi() {
-  // const location = useLocation();
-  // const ids= location.state
+  // const auth =useAuth()
+  // console.log(auth.user)
   return (<>  
   <Navbar /> 
   <Outlet />

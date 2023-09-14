@@ -16,22 +16,25 @@ import AdminOrderDetails from "./components/12_admin_order_details.jsx";
 import ClientView from "./components/006_client_profile_view.jsx";
 import ClientEdit from "./components/006_client_profile-edit.jsx";
 import AdminUi from "./components/0007_admin_ui.jsx";
+import { ContextProvider } from "./components/auth.jsx";
+import  RequireAuth  from "./components/requireAuth.jsx";
 
 function App(){
     return ( 
 <BrowserRouter>
+<ContextProvider>
     <Routes>
         <Route path="/" element={<Home/> } />
         <Route path="/client_login" element={<ClientLogin/> } />
         <Route path="/client_register" element={<ClientRegister/> } />
-        <Route path="/client" element={<ClientUi/> }>
-            <Route index element={<ClientStore/> }/>
-            <Route path="store" element={<ClientStore/> } />
-            <Route path="cart" element={<ClientCart/> } />
-            <Route path="profile" element={<ClientProfile/> } >
-                <Route index element={<ClientView/> }/>
-                <Route path="view" element={<ClientView/> } />
-                <Route path="edit" element={<ClientEdit/> } />
+        <Route path="/client" element={<RequireAuth><ClientUi/></RequireAuth> }>
+            <Route index element={<RequireAuth><ClientStore/></RequireAuth> }/>
+            <Route path="store" element={<RequireAuth><ClientStore/></RequireAuth> } />
+            <Route path="cart" element={<RequireAuth><ClientCart/></RequireAuth> } />
+            <Route path="profile" element={<RequireAuth><ClientProfile/></RequireAuth> } >
+                <Route index element={<RequireAuth><ClientView/></RequireAuth> }/>
+                <Route path="view" element={<RequireAuth><ClientView/></RequireAuth> } />
+                <Route path="edit" element={<RequireAuth><ClientEdit/></RequireAuth> } />
             </Route>
         </Route>
         <Route path="/admin_login" element={<AdminLogin/> } />
@@ -44,6 +47,7 @@ function App(){
             <Route path="order_details" element={<AdminOrderDetails/> } />
         </Route>
     </Routes>
+    </ContextProvider>
 </BrowserRouter>
 )}
 

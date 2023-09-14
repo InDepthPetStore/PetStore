@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaUser, FaStore } from 'react-icons/fa';
+import { useAuth } from './auth.jsx';
 
 const Navbar = () => {
     const navigate = useNavigate()
+    const auth = useAuth()
     const navbarstyles= ({isActive})=>{
         return {
             textDecoration: "none",
@@ -13,16 +15,8 @@ const Navbar = () => {
 
 
     const logout=()=>{
-      axios.post('/auth/login_client')
-      .then((res)=>{
-        console.log(res)
-        navigate('/client')})
-      .catch((error)=>{ if (error.response) {
-        setError(error.response.data.message); // Set the error message from the response
-      } else {
-        setError("An error occurred. Please try again later."); // Handle network errors
-      }
-        });
+      auth.logout()
+      navigate("/",{replace:true})
       }
 
 
@@ -47,7 +41,7 @@ const Navbar = () => {
             <FaShoppingCart />
             </NavLink>
             
-            <button className='start-button_H' onClick={()=>{navigate("/")}}>
+            <button className='start-button_H' onClick={()=>{logout()}}>
             Logout
             </button>
     </nav>
