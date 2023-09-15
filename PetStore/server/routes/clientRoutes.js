@@ -6,11 +6,11 @@ const adminController = require("../controllers/adminController");
 
 // router.use(verifyJWT);
 router.route("/ids/:idclient").get(clientController.rememberId);
-router.route("/products").get(adminController.getAllProducts);
-router.route("/products/:category").get(adminController.getCategory);
-router.route("/products/add_to_cart").post(clientController.addcartproduct);
+router.route("/store").get(adminController.getAllProducts);
+router.route("/store/:category").get(adminController.getCategory);
+router.route("/store").post(clientController.addcartproduct);
 router.route("/cart/:cart_idcart").get(clientController.cart);
-
+router.route("/cart/:products_idproduct/:cart_clients_idclient").delete(clientController.deleteP)
 // router.route("/product/:idproduct").put(clientController.updateProduct);
 
 

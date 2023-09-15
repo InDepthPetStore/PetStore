@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from './auth.jsx';
 
-function ClientStore(props) {
+function ClientStore() {
+  const auth = useAuth()
   const [products, setProducts] = useState([]);
   const [currentCategory, setCurrentCategory] = useState('all');
   const [error, setError] = useState("");
-
-  const ids = props.ids;
+const [actualP, setActualP]=useState(null)
 
   useEffect(() => {
     getAllProducts();
   }, []);
+  useEffect(()=>{
+    if(actualP){
+      console.log(actualP,"     ",auth.user[0])
+      addToCart(actualP)
+    }
+  },[actualP])
 
 
   const getAllProducts = () => {
-    axios.get('/client/products') 
+    axios.get('/client/store') 
       .then((response) => {
         setProducts(response.data);
         setCurrentCategory('all');
@@ -25,7 +32,7 @@ function ClientStore(props) {
   };
 
   const getCategoryProducts = (category) => {
-    axios.get(`/client/products/${category}`) 
+    axios.get(`/client/store/${category}`) 
       .then((response) => {
         setProducts(response.data);
         setCurrentCategory(category);
@@ -35,8 +42,8 @@ function ClientStore(props) {
       });
   };
 
-  const addToCart = (product) => {
-  axios.post('client/products/add_to_cart',{p_image: product.image, p_name: product.name, quantity:1, cost:product.price, products_idproduct: product.idproduct, cart_idcart:ids.idcart, cart_clients_idclient:ids.clients_idclient})
+  const addToCart = (a) => {
+  axios.post('/client/store',{p_image: a.image, p_name: a.name, quantity:1, cost:a.price, products_idproduct: a.idproduct, cart_idcart: auth.user[0].idcart, cart_clients_idclient: auth.user[0].clients_idclient})
   .then((res)=>{
     console.log(res)})
   .catch((error)=>{ if (error.response) {
@@ -87,7 +94,7 @@ function ClientStore(props) {
                 <h5 className="product-name">{product.name}</h5>
                 <p className="product-price">Price: ${product.price}</p>
                 {error && <p style={{color:"red"}} className="error-message">{error}</p>} {/* Display error message if it exists */}
-                <button className="add-to-cart-button" onClick={() => addToCart(product)}>
+                <button className="add-to-cart-button" onClick={() => {setActualP(product)}}>
                   Add to Cart
                 </button>
               </div>
