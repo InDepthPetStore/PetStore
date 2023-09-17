@@ -89,7 +89,7 @@ const [actualP, setActualP]=useState(null)
         <div className="product-grid mt-4">
           {products.map((product) => (
             <div className="product-card" key={product.idproduct}>
-              <img src={product.image} className="product-image" alt={product.name} />
+              <img className="product-image" src={product.image}  alt={product.name} />
               <div className="product-info">
                 <h5 className="product-name">{product.name}</h5>
                 <p className="product-price">Price: ${product.price}</p>

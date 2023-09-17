@@ -68,6 +68,37 @@ const deleteProduct = async(req, res) => {
     }
 }
 
+const getAllOrders = async(req, res) => {
+  const query = `SELECT * FROM orders`
+  try {const [result] = await pool.query(query)
+    res.status(200).json(result)}
+    catch (error) {
+      console.error('Error fetching', error);
+      res.status(500).json({ message: 'Failed to get orders' });
+    }
+}
 
-module.exports = { createProduct, updateProduct, deleteProduct ,getAllProducts,getCategory}
+const getState = async (req, res) => {
+  const {state} = req.params
+  const query = `SELECT * FROM orders WHERE state = ?`;
+  try {const [result] = await pool.query(query,[state])
+    res.status(200).json(result)}
+    catch (error) {
+      console.error('Error fetching', error);
+      res.status(500).json({ message: 'Failed to get orders' });
+    }
+}
+
+const updateS = async (req, res) => {
+  const {idorder,state} = req.params
+  const query = 'UPDATE orders SET state= ? WHERE idorder=?';
+  try {const [result] = await pool.query(query,[idorder,state])
+    res.status(200).json(result)}
+    catch (error) {
+      console.error('Error updating', error);
+      res.status(500).json({ message: 'Failed to update state' });
+    }
+}
+
+module.exports = { createProduct, updateProduct, deleteProduct ,getAllProducts,getCategory,getAllOrders, getState, updateS}
 

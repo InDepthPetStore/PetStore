@@ -12,12 +12,12 @@ import AdminStore from "./components/08_admin_store.jsx";
 import AdminAddProduct from "./components/09_admin_add_product.jsx";
 import AdminProductDetails from "./components/10_admin_product_details.jsx";
 import AdminOrders from "./components/11_admin_orders.jsx";
-import AdminOrderDetails from "./components/12_admin_order_details.jsx";
-import ClientView from "./components/006_client_profile_view.jsx";
-import ClientEdit from "./components/006_client_profile-edit.jsx";
 import AdminUi from "./components/0007_admin_ui.jsx";
 import { ContextProvider } from "./components/auth.jsx";
 import  RequireAuth  from "./components/requireAuth.jsx";
+import ClientOrder from "./components/05_client_order.jsx";
+import ProfileC from "./components/0006_profile.jsx";
+import OrdersC from "./components/006_orders.jsx";
 
 function App(){
     return ( 
@@ -31,11 +31,12 @@ function App(){
             <Route index element={<RequireAuth><ClientStore/></RequireAuth> }/>
             <Route path="store" element={<RequireAuth><ClientStore/></RequireAuth> } />
             <Route path="cart" element={<RequireAuth><ClientCart/></RequireAuth> } />
-            <Route path="profile" element={<RequireAuth><ClientProfile/></RequireAuth> } >
-                <Route index element={<RequireAuth><ClientView/></RequireAuth> }/>
-                <Route path="view" element={<RequireAuth><ClientView/></RequireAuth> } />
-                <Route path="edit" element={<RequireAuth><ClientEdit/></RequireAuth> } />
+            <Route path="profile" element={<RequireAuth><ClientProfile/></RequireAuth> }>
+                <Route index element={<RequireAuth><ProfileC/></RequireAuth> }/>
+                <Route path="view" element={<RequireAuth><ProfileC/></RequireAuth> }/>
+                <Route path="orders" element={<RequireAuth><OrdersC/></RequireAuth> }/>
             </Route>
+            <Route path="order" element={<RequireAuth><ClientOrder/></RequireAuth> } />
         </Route>
         <Route path="/admin_login" element={<AdminLogin/> } />
         <Route path="/admin" element={<AdminUi/> } >
@@ -44,7 +45,6 @@ function App(){
             <Route path="add_product" element={<AdminAddProduct/> } />
             <Route path="product_details/:idproduct" element={<AdminProductDetails/> } />
             <Route path="orders" element={<AdminOrders/> } />
-            <Route path="order_details" element={<AdminOrderDetails/> } />
         </Route>
     </Routes>
     </ContextProvider>

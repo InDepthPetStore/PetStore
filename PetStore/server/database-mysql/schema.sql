@@ -125,23 +125,16 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `petstore`.`orders` (
   `idorder` INT NOT NULL AUTO_INCREMENT,
   `client` VARCHAR(225) NOT NULL,
+  `idclient` VARCHAR(225) NOT NULL,
   `phone` VARCHAR(255) NOT NULL,
   `shipping` VARCHAR(255) NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `detail` VARCHAR(255) NOT NULL,
   `t_cost` INT NOT NULL,
   `state` VARCHAR(255) NULL,
-  `cp_cart_idcart` INT NOT NULL,
-  `cp_cart_clients_idclient` INT NOT NULL,
-  `cp_products_idproduct` INT NOT NULL,
-  PRIMARY KEY (`idorder`, `cp_cart_idcart`, `cp_cart_clients_idclient`, `cp_products_idproduct`),
-  INDEX `fk_orders_cp1_idx` (`cp_cart_idcart` ASC, `cp_cart_clients_idclient` ASC, `cp_products_idproduct` ASC) VISIBLE,
-  CONSTRAINT `fk_orders_cp1`
-    FOREIGN KEY (`cp_cart_idcart` , `cp_cart_clients_idclient` , `cp_products_idproduct`)
-    REFERENCES `petstore`.`cp` (`cart_idcart` , `cart_clients_idclient` , `products_idproduct`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`idorder`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
